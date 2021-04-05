@@ -1,0 +1,125 @@
+body{
+    font-size: 20px;
+}
+
+.header{
+    background: linear-gradient(to right,lightblue,purple);
+    font-size: 120%;
+    color:white;
+    font-weight: bolder;
+    text-align: center; 
+    padding: 10px; 
+    margin-bottom: 10px;
+}
+
+main{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.searchSection{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin:10px;
+    flex: 1 1 200px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    border-bottom: 2px solid grey;
+}
+
+.displaySection{
+    display: flex;
+    flex-direction: column;
+    margin:10px;
+    flex: 4 4 800px;
+}
+
+.card-1{
+    border: 1px solid gray;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.card-2{
+    background-color:#003333;
+    color:white;
+    padding: 5px;
+    margin: 10px;
+    flex: 1 1 100px;
+}
+
+.container-days{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+h1{
+    font-size: 120%;
+    margin-bottom: 10px;
+}
+
+h2{
+    font-size: 100%;
+    margin-bottom: 10px;
+}
+
+h3{
+    font-size: 70%;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+i{
+    margin-bottom: 10px;
+}
+
+input{
+    border: 0.5px solid black;
+    border-radius: 5px;
+    font-size: 120%;
+}
+
+input:focus {
+    box-shadow: 5px 5px 5px DodgerBlue
+}
+
+button{
+    display: block;
+    font-size: 80%;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 10px;
+    background-color: grey;
+    cursor: pointer;
+}
+
+#searchBtn{
+    background-color:DodgerBlue;
+    color: white;
+    border: 1px solid DodgerBlue;
+    margin-bottom: 10px;
+}
+
+#searchBtn:hover{
+    background-color:rgba(30, 143, 255, 0.623);
+}
+
+button:hover{
+    border: none;
+    background-color: #80808080;
+}
+
+
+
+
+#UV-value{
+    background-color: teal;
+    border-radius: 3px;
+}
