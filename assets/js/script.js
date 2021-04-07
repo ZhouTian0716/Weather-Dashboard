@@ -41,21 +41,23 @@ function showPosition(position) {
 
 
 //----------------------------------------------------------------------------------- 
-//to be solved
-formEl.on('click', '#clear', clearHistory);
-function clearHistory(event){
-    event.stopPropagation();
-    if (storedCities!==null){
+//Addtional Function: Clear history button
+
+searchSecEl.on('click', '#clear', clearHistory);
+function clearHistory(){
+    if (storedCities){
         searchHistory =[];
         localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
-     
+        $('.cityBtn').remove();
+        //weather back to user local city once history cleared
+        getSearchWeather(localLat,localLon);
     }
-    else {alert('Please enter a valid CITY NAME');}
+    else {return;}
 }
 
 
 //-----------------------------------------------------------------------------------
-//Add search history buttons 
+//Create search history buttons
 formEl.on('submit', addSearch);
 
 function addSearch(event){
@@ -119,12 +121,6 @@ function historyWeather(event){
   //Convert previous searched city name and country to Geo Location (latitude & longtitude)
   cityToGeo(name, undefined, country);
 }
-
-//searchSecEl.on('click', '.cityBtn', test());
-//function test(){console.log('hello')}
-
-
-
 //----------------------------------------------------------------------------------- 
 
 
@@ -239,8 +235,7 @@ $(function () {
 
 function currentUpdate(data){
   $('#currentDate').text(moment.unix(data.current.dt).format("ddd, DD/MM/YYYY, hh:mm a")+' (localtime)');
-  // $('#chosenCity').text(object.city);
-  // $('#currentIcon').addClass(object.weather);
+  $('#currentIcon').attr("src","http://openweathermap.org/img/wn/"+ data.current.weather[0].icon +"@2x.png");
   $('#currentTemp').text('Temp: '+ data.current.temp +'°C');
   $('#currentWind').text('Wind: '+ data.current.wind_speed +'m/s');
   $('#currentHumidity').text('Humidity: '+ data.current.humidity +'%');
@@ -253,14 +248,14 @@ function currentUpdate(data){
 };
 
 //----------------------------------------------------------------------------------- 
-
+//$("img").attr("width","500")
 //----------------------------------------------------------------------------------- 
 //currentForecast
 
 function forecastUpdate(data){
   for(var i=0; i<5; i++){
     $('.container-days').children().eq(i).children().eq(0).text(moment.unix(data.daily[i+1].dt).format("ddd, DD/MM/YYYY"));
-    //$('.container-days').children().eq(i).children().eq(1).addClass(object[i].weather);
+    $('.container-days').children().eq(i).children().eq(1).attr("src","http://openweathermap.org/img/wn/"+ data.daily[i+1].weather[0].icon +"@2x.png");
     $('.container-days').children().eq(i).children().eq(2).text('Top Temp: '+ data.daily[i+1].temp.max +'°C');
     $('.container-days').children().eq(i).children().eq(3).text('Low Temp: '+ data.daily[i+1].temp.min +'°C');
     $('.container-days').children().eq(i).children().eq(4).text('Wind: '+ data.daily[i+1].wind_speed +'m/s');

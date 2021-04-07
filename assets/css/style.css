@@ -81,7 +81,9 @@ h3{
     font-style: italic;
 }
 
-i{
+.icon{
+    height: 35px;
+    width: 35px;
     margin-bottom: 20px;
 }
 
