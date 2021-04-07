@@ -82,7 +82,7 @@ function getSearchWeather(Lat,Lon) {
 //Reverse geocoding API
 //url example: http://api.openweathermap.org/geo/1.0/reverse?lat=51.5098&lon=-0.1180&limit=5&appid=db24224f8e3ca0b3dccfc89d78aedc3a
 function geoToCity(Lat,Lon) {
-  var targetUrl = 'http://api.openweathermap.org/geo/1.0/reverse?lat=' + Lat + '&lon=' + Lon + '&limit=1&appid=db24224f8e3ca0b3dccfc89d78aedc3a';
+  var targetUrl = 'https://api.openweathermap.org/geo/1.0/reverse?lat=' + Lat + '&lon=' + Lon + '&limit=1&appid=db24224f8e3ca0b3dccfc89d78aedc3a';
   fetch(targetUrl)
     .then(function (response) {
       if (response.ok) {
@@ -108,7 +108,7 @@ function geoToCity(Lat,Lon) {
 //url example: http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
 //For US Cities
 function cityToGeoUS(cityName,stateCode,countryCode) {
-  var targetUrl = 'http://api.openweathermap.org/geo/1.0/direct?q='+ cityName +','+ stateCode +','+ countryCode +'&limit=1&appid=db24224f8e3ca0b3dccfc89d78aedc3a';
+  var targetUrl = 'https://api.openweathermap.org/geo/1.0/direct?q='+ cityName +','+ stateCode +','+ countryCode +'&limit=1&appid=db24224f8e3ca0b3dccfc89d78aedc3a';
   fetch(targetUrl)
     .then(function (response) {
       if (response.ok) {
@@ -129,7 +129,7 @@ function cityToGeoUS(cityName,stateCode,countryCode) {
 //------------------------------------------------------------------------------------------------------------------------------ 
 //For non US Cities
 function cityToGeo(cityName,countryCode) {
-  var targetUrl = 'http://api.openweathermap.org/geo/1.0/direct?q='+ cityName +','+ countryCode +'&limit=1&appid=db24224f8e3ca0b3dccfc89d78aedc3a';
+  var targetUrl = 'https://api.openweathermap.org/geo/1.0/direct?q='+ cityName +','+ countryCode +'&limit=1&appid=db24224f8e3ca0b3dccfc89d78aedc3a';
   fetch(targetUrl)
     .then(function (response) {
       if (response.ok) {
@@ -154,7 +154,7 @@ function cityToGeo(cityName,countryCode) {
 function currentUpdate(data){
   //method unix outputs userlocal time, this can be change to adapt search city local time by adding utcOffset method.
   $('#currentDate').text(moment.unix(data.current.dt).utcOffset(data.timezone_offset/60).format("ddd, DD/MM/YYYY, hh:mm a")+' (City localtime)');
-  $('#currentIcon').attr("src","http://openweathermap.org/img/wn/"+ data.current.weather[0].icon +"@2x.png");
+  $('#currentIcon').attr("src","https://openweathermap.org/img/wn/"+ data.current.weather[0].icon +"@2x.png");
   $('#currentTemp').text('Temp: '+ data.current.temp +'°C');
   $('#currentWind').text('Wind: '+ data.current.wind_speed +'m/s');
   $('#currentHumidity').text('Humidity: '+ data.current.humidity +'%');
@@ -172,7 +172,7 @@ function currentUpdate(data){
 function forecastUpdate(data){
   for(var i=0; i<5; i++){
     $('.container-days').children().eq(i).children().eq(0).text(moment.unix(data.daily[i+1].dt).format("ddd, DD/MM/YYYY"));
-    $('.container-days').children().eq(i).children().eq(1).attr("src","http://openweathermap.org/img/wn/"+ data.daily[i+1].weather[0].icon +"@2x.png");
+    $('.container-days').children().eq(i).children().eq(1).attr("src","https://openweathermap.org/img/wn/"+ data.daily[i+1].weather[0].icon +"@2x.png");
     $('.container-days').children().eq(i).children().eq(2).text('Top Temp: '+ data.daily[i+1].temp.max +'°C');
     $('.container-days').children().eq(i).children().eq(3).text('Low Temp: '+ data.daily[i+1].temp.min +'°C');
     $('.container-days').children().eq(i).children().eq(4).text('Wind: '+ data.daily[i+1].wind_speed +'m/s');
