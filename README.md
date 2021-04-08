@@ -26,4 +26,45 @@ WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
 ```
 # Demonstration Snapshoots
+The following image shows the web application's appearance and functionality:
 
+1.Page first load as the following, start from the arrows.
+![landing page](./assets/img/1.JPG)
+
+2.Click navigation icon to display user local weather.(Note: The current time displayed was the UTC from the searched City.)
+![landing page](./assets/img/2.JPG)
+
+3.Search an US City and the search history was successfully saved as a button.
+![landing page](./assets/img/3.JPG)
+
+4.Try to pick a few more cities all over the world, see if it works fine.(Note: Please type in valid city names in English and follow valid Country Codes, this app is not foolproof ready.)
+![landing page](./assets/img/4.JPG)
+![landing page](./assets/img/5.JPG)
+
+5.When user click the clear history button, previous searches all removed, user current located city's weather shown.
+![landing page](./assets/img/6.JPG)
+
+6.When user refresh the page, weather display section was hidden, previous searches persist in the grey buttons.
+![landing page](./assets/img/7.JPG)
+
+7.Previous search successfully accessed.
+![landing page](./assets/img/8.JPG)
+
+# Server side APIs
+
+
+* One Call API: https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
+
+* Direct geocoding: http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
+
+* Reverse geocoding: http://api.openweathermap.org/geo/1.0/reverse?lat={lat}&lon={lon}&limit={limit}&appid={API key}
+
+# Third Parts Scripts
+
+* Jquery
+* Jquery UI Widget
+* Fontawesome
+* Moment.js
+
+# Written by 
+Zhou Tian
