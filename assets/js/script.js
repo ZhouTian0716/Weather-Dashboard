@@ -153,7 +153,7 @@ function cityToGeo(cityName,countryCode) {
     });
 };
 //----------------------------------------------------------------------------------- 
-//- data.timezone_offset
+
 //----------------------------------------------------------------------------------- 
 //currentSearch
 function currentUpdate(data){
@@ -210,14 +210,18 @@ formEl.on('submit', addSearch);
 function addSearch(event){
     event.preventDefault();
     if (citySearch.val()&&countrySearch.val()){
-        var newCityEl= $('<button class="cityBtn">');
-        searchSecEl.append(newCityEl);
         if(countrySearch.val()==='US'){
-          var usSearch = citySearch.val() +'-'+ countrySearch.val() +'-'+ stateSearch.val();
-          newCityEl.text(usSearch);
-          searchHistory.push(usSearch);
+          if (stateSearch.val()){
+            var newCityEl= $('<button class="cityBtn">');
+            searchSecEl.append(newCityEl);  
+            var usSearch = citySearch.val() +'-'+ countrySearch.val() +'-'+ stateSearch.val();
+            newCityEl.text(usSearch);
+            searchHistory.push(usSearch);
+          } else{alert('State Code Required for US Search')}
         }
         else{
+          var newCityEl= $('<button class="cityBtn">');
+          searchSecEl.append(newCityEl);
           var otherSearch = citySearch.val() +'-'+ countrySearch.val();
           newCityEl.text(otherSearch);
           searchHistory.push(otherSearch);
@@ -240,7 +244,7 @@ function checkUserInput(){
   if (citySearch.val()&&countrySearch.val()){
       if(countrySearch.val()==='US'){
         if(stateSearch.val()){cityToGeoUS(citySearch.val(), stateSearch.val(), countrySearch.val())}
-        else{alert('All three inputs Required')}
+        else{return}
       }
       else {cityToGeo(citySearch.val(), countrySearch.val());
       }
