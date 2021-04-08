@@ -13,13 +13,14 @@
     <header class='header'>Weather Dashboard</header>
     <main>
         <div class='searchSection'>
+            <h2>Icon get user location: <i class="fas fa-location-arrow" id = "navigateIcon"></i></h2>
             <form>
                 <h2>City Name:</h2>
-                <input type='text' id='cityInput'>
+                <input type='text' id='cityInput' placeholder="Brooklyn">
                 <h2>Country Code:</h2>
-                <input type='text' id='countryInput'>
+                <input type='text' id='countryInput' placeholder="US">
                 <h2>(US Only) State Code:</h2>
-                <input type='text' id='stateInput'>
+                <input type='text' id='stateInput' placeholder="WI">
                 <button id='searchBtn'>Search</button>
             </form>
             <button id='clear'>Clear history</button>
@@ -87,8 +88,8 @@
         </div>
     </main>  
 </body>
-<!-- fontawesome was used -->
-<!-- <script src="https://kit.fontawesome.com/5918a32bd5.js" crossorigin="anonymous"></script> -->
+<!-- fontawesome for navigation icon -->
+<script src="https://kit.fontawesome.com/5918a32bd5.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>

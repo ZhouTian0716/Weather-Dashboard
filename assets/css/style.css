@@ -18,6 +18,10 @@ main{
     flex-wrap: wrap;
 }
 
+#navigateIcon:hover{
+    cursor: pointer;
+}
+
 .searchSection{
     display: flex;
     flex-direction: column;
@@ -34,6 +38,7 @@ form{
 
 .displaySection{
     display: flex;
+    opacity: 0;
     flex-direction: column;
     margin:10px;
     flex: 4 4 800px;

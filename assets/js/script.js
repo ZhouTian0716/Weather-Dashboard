@@ -23,22 +23,26 @@ var storedCities = JSON.parse(localStorage.getItem("searchHistory"));
 //****************************************************************************************************************
 //Script functions listed in order.
 //****************************************************************************************************************
-locateUser(); //script run from here.
-//As a user, I want to see the weather of my current located city as I open the application.
+//script run from here.
+init();
+//As a user, I want to see the weather of my current located city by click on navigation Icon.
+$('#navigateIcon').on('click', locateUser);
 function locateUser() {
-  if (navigator.geolocation) {navigator.geolocation.getCurrentPosition(showPosition)}
-  else {alert("Geolocation is not supported by this browser.")}
+  if($('#navigateIcon').attr('color')!=='lightblue'){
+    if (navigator.geolocation) {navigator.geolocation.getCurrentPosition(showPosition)}
+    else {alert("Geolocation is not supported by this browser.")}
+  } else {return};
 }
 function showPosition(position) {
   localLat = position.coords.latitude; 
   localLon = position.coords.longitude;
-  init();
+  $('#navigateIcon').css('color', 'lightblue');
+  getSearchWeather(localLat,localLon); 
 }
 //----------------------------------------------------------------------------------- 
 
 //----------------------------------------------------------------------------------- 
 function init(){
-  getSearchWeather(localLat,localLon);
   //Add history search buttons if localStorage exists. Important!
     if (storedCities){
       searchHistory = storedCities;
@@ -56,6 +60,7 @@ function init(){
 //One Call API
 //url example: https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&exclude=hourly,daily&appid={API key}"
 function getSearchWeather(Lat,Lon) {
+  $('.displaySection').css('opacity', '1');
   var targetUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + Lat + '&lon=' + Lon + '&exclude=minutely,hourly,alerts&units=metric&appid=db24224f8e3ca0b3dccfc89d78aedc3a';
     fetch(targetUrl)
       .then(function (response) {
