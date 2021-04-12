@@ -212,24 +212,29 @@ function addSearch(event){
     if (citySearch.val()&&countrySearch.val()){
         if(countrySearch.val()==='US'){
           if (stateSearch.val()){
-            var newCityEl= $('<button class="cityBtn">');
-            searchSecEl.append(newCityEl);  
             var usSearch = citySearch.val() +'-'+ countrySearch.val() +'-'+ stateSearch.val();
-            newCityEl.text(usSearch);
-            searchHistory.push(usSearch);
+            if(searchHistory.indexOf(usSearch) === -1){
+              var newCityEl= $('<button class="cityBtn">');
+              searchSecEl.append(newCityEl);  
+              newCityEl.text(usSearch);
+              searchHistory.push(usSearch);
+            } else {return} 
           } else{alert('State Code Required for US Search')}
         }
         else{
-          var newCityEl= $('<button class="cityBtn">');
-          searchSecEl.append(newCityEl);
           var otherSearch = citySearch.val() +'-'+ countrySearch.val();
-          newCityEl.text(otherSearch);
-          searchHistory.push(otherSearch);
+          //if this search is not new, stop saving it.
+          if(searchHistory.indexOf(otherSearch) === -1){
+            var newCityEl= $('<button class="cityBtn">');
+            searchSecEl.append(newCityEl);
+            newCityEl.text(otherSearch);
+            searchHistory.push(otherSearch)
+          } else {return} 
         };
         localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
         
     }
-    else {return;}
+    else {return}
 }
 //----------------------------------------------------------------------------------- 
 
